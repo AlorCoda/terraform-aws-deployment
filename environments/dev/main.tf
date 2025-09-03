@@ -15,7 +15,7 @@ provider "aws" {
 
 # VPC module
 module "vpc" {
-  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=main"
+  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//vpc?ref=main"
 
   name   = "attah"
   cidr_block   = var.vpc_cidr
@@ -25,7 +25,7 @@ module "vpc" {
 
 # EC2 module
 module "ec2" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/ec2?ref=main"
+  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//ec2?ref=main"
 
   instance_type   = var.instance_type
   ami             = var.data.aws_ami.ubuntu.id
@@ -35,7 +35,7 @@ module "ec2" {
 
 # Security Group module
 module "sg" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/security-group?ref=main"
+  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git///security-group?ref=main"
 
   name        = "dev-sg"
   description = "Allowed HTTP/SSH"
