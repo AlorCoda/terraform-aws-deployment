@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 6.0.0"
+  required_version = "6.11.0"
 
   backend "s3" {
     bucket         = "benji-tf-state-bucket-3rd"

@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 6.0.0"
+  required_version = "6.11.0"
 
   backend "s3" {
     bucket         = "benji-tf-state-bucket-3rd"
@@ -15,7 +15,7 @@ provider "aws" {
 
 # VPC module
 module "vpc" {
-  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/library/vpc?ref=v1.0.0"
+  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=v1.0.0"
 
   name   = "attah"
   cidr_block   = var.vpc_cidr
@@ -25,7 +25,7 @@ module "vpc" {
 
 # EC2 module
 module "ec2" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/library/ec2?ref=v1.0.0"
+  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/ec2?ref=v1.0.0"
 
   instance_type   = var.instance_type
   ami             = var.data.aws_ami.ubuntu.id
@@ -35,7 +35,7 @@ module "ec2" {
 
 # Security Group module
 module "sg" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/library/security-group?ref=v1.0.0"
+  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/security-group?ref=v1.0.0"
 
   name        = "dev-sg"
   description = "Allowed HTTP/SSH"
