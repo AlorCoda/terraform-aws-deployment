@@ -13,33 +13,38 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Data source for VPC (if using existing VPC)
+data "aws_vpc" "default" {
+  default = true
+}
+
 # VPC module
 module "vpc" {
   source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=main"
 
   name   = "attah"
   cidr_block   = var.vpc_cidr
-  public_subnets  = var.aws_subnet.public.id 
-  private_subnets = var.aws_subnet.private.id 
+  public_subnets  = var.public_subnet_cidrs
+  private_subnets = var.var.private_subnet_cidrs 
 }
 
 # EC2 module
 module "ec2" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/ec2?ref=main"
+  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/ec2?ref=main"
 
   instance_type   = var.instance_type
-  ami             = var.data.aws_ami.ubuntu.id
+  ami             = var.aws_ami.ubuntu.id
   subnet_id       = module.vpc.public_subnet_ids[1]
-  security_groups = [module.security-group.security_group.web.id]
+  security_groups = [module.sg.security_group_id]
 }
 
 # Security Group module
 module "sg" {
-  source = "git::https://github.com//AlorCoda/terraform-aws-modules.git//modules/security-group?ref=main"
+  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/security-group?ref=main"
 
   name        = "dev-sg"
   description = "Allowed HTTP/SSH"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = data.vpc.vpc_id
 }
 
 # Data source for latest Ubuntu AMI
