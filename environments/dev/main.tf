@@ -61,5 +61,16 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
+    filter {
+    name   = "state"
+    values = ["available"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
   owners = ["099720109477"] # Canonical
 }
+
