@@ -44,7 +44,7 @@ module "sg" {
 
   name        = "dev-sg"
   description = "Allowed HTTP/SSH"
-  vpc_id      = data.vpc.vpc_id
+  vpc_id      = module.vpc.vpc_id
 }
 
 # # Data source for latest Ubuntu AMI
