@@ -5,7 +5,7 @@ terraform {
     bucket         = "benji-tf-state-bucket-3rd"
     key            = "dev/terraform.tfstate"
     region         = "us-west-2"
-    use_lockfile = true 
+    # use_lockfile = true 
   }
 }
 
