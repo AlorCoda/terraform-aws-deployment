@@ -32,20 +32,17 @@ module "ec2" {
   # ami             = var.ami_id
   # subnet_id       = module.vpc.public_subnet_ids[1]
   # security_groups = [module.sg.security_group_id]
-  
+
   instance_type    = var.instance_type
   image_id        = data.aws_ami.ubuntu.id      # instead of 'ami'
   subnet          = module.vpc.public_subnet_ids[0]  # instead of 'subnet_id'
   security_group_ids = [aws_security_group.web_sg.id]  # instead of 'security_groups'
-
 }
 
 # Security Group module
 module "sg" {
   source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/security-group?ref=main"
 
-  name        = "dev-sg"
-  description = "Allowed HTTP/SSH"
   vpc_id      = module.vpc.vpc_id
 }
 
