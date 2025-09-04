@@ -14,15 +14,15 @@ provider "aws" {
   region = var.aws_region
 }
 
-# VPC module
-module "vpc" {
-  source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=main"
+# # VPC module
+# module "vpc" {
+#   source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=main"
 
-  name   = "attah"
-  cidr_block   = var.vpc_cidr
-  public_subnets  = var.public_subnet_cidrs
-  private_subnets = var.var.private_subnet_cidrs 
-}
+#   name   = "attah"
+#   cidr_block   = var.vpc_cidr
+#   public_subnets  = var.public_subnet_cidrs
+#   private_subnets = var.var.private_subnet_cidrs 
+# }
 
 # EC2 module
 # module "ec2" {
@@ -45,6 +45,7 @@ module "vpc" {
 # VPC module (keep this if it works)
 module "vpc" {
   source = "git::https://github.com/AlorCoda/terraform-aws-modules.git//modules/vpc?ref=main"
+
   name            = "attah"
   cidr_block      = var.vpc_cidr
   public_subnets  = var.public_subnet_cidrs
